@@ -42,5 +42,19 @@ namespace ApiPersonajesAWS.Controllers
             await this.repo.Eliminar(idpersonaje);
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<ActionResult<Personaje>> Update(Personaje personaje)
+        {
+            Personaje per = await this.repo.UpdatePersonaje(personaje.IdPersonajes, personaje.Nombre, personaje.Imagen);
+            if (per == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(per);
+            }
+        }
     }
 }
